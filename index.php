@@ -1,23 +1,38 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<style>
+.white
+{
+background-color:white;
+}
 
+
+.blue{
+background-color:blue;
+}
+
+
+button {
+border-radius:10px;
+}
+
+</style>
 <body>
 
 <table style="width:100%">
   <tr>
     <td>Gear 1</td>	
-    <td><button type="button" id="1" class="btn btn-default">On</button></td>
+    <td><button type="button" id="1" class="white">On</button></td>
   </tr>
   <tr>
     <td>Gear 2</td>
-    <td><button type="button"  id="2" class="btn btn-default">On</button></td>
+    <td><button type="button"  id="2" class="white">On</button></td>
   </tr>
   <tr>
     <td>Gear 3</td>
-    <td><button type="button"  id="3" class="btn btn-default">On</button></td>
+    <td><button type="button"  id="3" class="white">On</button></td>
   </tr>
    <tr>
     <td>Gear 4</td>
-    <td><button type="button"  id="4" class="btn btn-default">On</button></td>
+    <td><button type="button"  id="4" class="white">On</button></td>
   </tr>
   <span></span>
 </table>
@@ -33,16 +48,15 @@
       $('button').click(function  () {
       	if ($(this).html()=='On') {
       		$(this).html('Off');
-      	$(this).removeClass('btn-default');
-      	$(this).addClass('btn-primary');
+      	$(this).removeClass('white');
+      	$(this).addClass('blue');
         $url = "txt.php";
 		
 		txt = '';
 		$.each( $('button'), function(i, nappula) {
 			html = $(nappula).html();
 			id = $(nappula).attr('id');
-        txt += id + ': ' + html + '\r\n';
-
+        txt += id + ' ' + html + '\r\n';
 });
         
         console.log(txt);
@@ -54,19 +68,18 @@
       	}
       	 else{
       	 	$(this).html('On');
-      	$(this).removeClass('btn-primary');
-      	$(this).addClass('btn-default');
+      	$(this).removeClass('blue');
+      	$(this).addClass('white');
         $url = "txt.php";
         	txt = '';
 		$.each( $('button'), function(i, nappula) {
 			html = $(nappula).html();
 			id = $(nappula).attr('id');
-        txt += id + ': ' + html + '\r\n';
-        
+        txt += id + ' ' + html + '\r\n';
 		});
         console.log(txt);
         $.post("txt.php",{suggest:txt},function(result){
-          
+          console.log("got result = "+result);
      // $("span").html(result);
     });
         
